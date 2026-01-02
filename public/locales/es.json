@@ -1,0 +1,98 @@
+{
+  "hero": {
+    "eyebrow": "INVESTIGACIÓN & ANALÍTICA",
+    "name": "ALONSO",
+    "surname": "TERNERO",
+    "tagline": "Construyendo sistemas basados en datos y capturando historias visuales. Ingeniero de analítica & fotógrafo en Lima.",
+    "cta": "Inicializar Portfolio",
+    "ctaLoading": "INICIALIZANDO...",
+    "ctaSecondary": "Contactar"
+  },
+  "about": {
+    "label": "SOBRE MÍ",
+    "title": "PERFIL HÍBRIDO",
+    "paragraphs": [
+      "Graduado de Comunicación & Marketing de UPC con una trayectoria única. No soy exactamente 'de datos', ni puramente 'creativo', y definitivamente no soy solo 'desarrollador'. Soy los tres, integrados sin costuras.",
+      "Mi enfoque: decir sí a los retos, investigar obsesivamente, construir incrementalmente, automatizar sin descanso. Si se hace dos veces, debería automatizarse. Si hay una mejor forma, la encontraré.",
+      "Actualmente en Reset Comunicaciones construyendo herramientas de analítica empresarial que transforman cómo la agencia procesa inteligencia de mercado. De compra de medios a desarrollo full-stack—el camino fue poco convencional, pero cada habilidad se potencia."
+    ],
+    "skills": [
+      {
+        "title": "ANALÍTICA & RESEARCH",
+        "description": "Especialista TGI, Kantar Ibope, segmentación psicográfica, GA4, consumer insights, análisis estratégico de mercado"
+      },
+      {
+        "title": "DESARROLLO",
+        "description": "Python, React, FastAPI, Google Cloud, Docker, CI/CD. 1,885+ líneas de automatización adoptadas en toda la empresa"
+      },
+      {
+        "title": "MEDIOS & ESTRATEGIA",
+        "description": "Campañas 360°, compra/planificación de medios, optimización de ROI (4x sostenido), Meta/Google/TikTok Ads"
+      }
+    ]
+  },
+  "work": {
+    "label": "TRABAJO",
+    "title": "PROYECTOS SELECCIONADOS",
+    "projects": [
+      {
+        "category": "AUTOMATIZACIÓN",
+        "title": "SUITE WEB EMPRESARIAL",
+        "description": "Plataforma full-stack centralizando herramientas de análisis de medios. Arquitectura FastAPI + React con procesamiento automatizado de Kantar Ibope, mapas geográficos personalizados y visualizaciones TGI interactivas. Desplegado en Google Cloud con CI/CD.",
+        "tech": ["FASTAPI", "REACT", "GOOGLE CLOUD", "DOCKER"],
+        "highlight": null,
+        "link": null
+      },
+      {
+        "category": "IMPACTO SOCIAL",
+        "title": "CAMPAÑA PONLE CORAZÓN",
+        "description": "Campaña benéfica para Fundación Peruana de Cáncer logrando 92% de alcance nacional. Coordinación de 7 canales de TV, 13 estaciones de radio y 55 elementos OOH en 8 ciudades. Presentación de análisis post-campaña y recomendaciones estratégicas a la junta directiva.",
+        "tech": ["COMPRA DE MEDIOS", "OOH", "COORDINACIÓN NACIONAL"],
+        "highlight": "92% alcance nacional, 8 ciudades",
+        "link": null
+      },
+      {
+        "category": "CAMPAÑA DIGITAL",
+        "title": "SAN FERNANDO E-COMMERCE",
+        "description": "ROI 4x sostenido gestionando 55%+ de ingresos totales de e-commerce mediante campañas optimizadas en Meta & Google. Segmentación estratégica de audiencias con testing A/B continuo y seguimiento de performance.",
+        "tech": ["META ADS", "GOOGLE ADS", "ANALYTICS"],
+        "highlight": "ROI 4x, 55%+ de ingresos",
+        "link": null
+      },
+      {
+        "category": "HERRAMIENTAS",
+        "title": "AUTOMATIZACIÓN UTM",
+        "description": "1,885 líneas de JavaScript automatizando la implementación de campañas digitales. Elimina errores operacionales, adoptado en toda Reset. Procesa miles de parámetros de campaña sin fricción.",
+        "tech": ["JAVASCRIPT", "GOOGLE APPS SCRIPT", "AUTOMATIZACIÓN"],
+        "highlight": "Adopción en toda la empresa",
+        "link": null
+      },
+      {
+        "category": "FOTOGRAFÍA",
+        "title": "TRABAJO EDITORIAL",
+        "description": "Sesiones de moda editorial y fotografía de retrato en múltiples continentes. Exhibido en Museo de Arte Contemporáneo de Cusco (2022) y Asociación Cultural Tierra Baldía, Lima (2021).",
+        "tech": ["MODA", "RETRATO", "EDITORIAL"],
+        "highlight": null,
+        "link": "https://www.behance.net/alonsoternero",
+        "linkText": "VER EN BEHANCE"
+      }
+    ]
+  },
+  "contact": {
+    "title": "CONECTEMOS",
+    "description": "Disponible para colaboraciones, consultoría, o simplemente una conversación sobre analítica, desarrollo o fotografía.",
+    "links": {
+      "linkedin": "LINKEDIN",
+      "behance": "BEHANCE",
+      "saveContact": "GUARDAR CONTACTO"
+    },
+    "labels": {
+      "email": "EMAIL",
+      "phone": "TELÉFONO",
+      "location": "UBICACIÓN"
+    }
+  },
+  "footer": {
+    "copyright": "© 2025 Alonso Ternero. Construido con propósito."
+  }
+}
