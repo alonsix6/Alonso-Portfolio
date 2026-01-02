@@ -44,7 +44,7 @@ END:VCARD`
           {/* Left Column */}
           <div>
             <TextScramble
-              text={t('contact.title') as string}
+              text={t('contact.title')}
               className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6"
               as="h2"
               trigger={triggerAnimation}
@@ -53,7 +53,7 @@ END:VCARD`
             />
 
             <TextScramble
-              text={t('contact.description') as string}
+              text={t('contact.description')}
               className="text-dark-text-secondary leading-relaxed mb-10"
               as="p"
               trigger={triggerAnimation}
@@ -74,7 +74,7 @@ END:VCARD`
                 }}
               >
                 <Linkedin size={18} />
-                {t('contact.links.linkedin') as string}
+                {t('contact.links.linkedin')}
               </a>
 
               <a
@@ -89,7 +89,7 @@ END:VCARD`
                 }}
               >
                 <ExternalLink size={18} />
-                {t('contact.links.behance') as string}
+                {t('contact.links.behance')}
               </a>
 
               <button
@@ -102,7 +102,7 @@ END:VCARD`
                 }}
               >
                 <Download size={18} />
-                {t('contact.links.saveContact') as string}
+                {t('contact.links.saveContact')}
               </button>
             </div>
           </div>
@@ -120,7 +120,7 @@ END:VCARD`
               <div className="flex items-center gap-3 mb-2">
                 <Mail size={20} className="text-dark-text-secondary" />
                 <span className="text-sm font-bold tracking-[0.2em] text-dark-text-secondary">
-                  {t('contact.labels.email') as string}
+                  {t('contact.labels.email')}
                 </span>
               </div>
               <a
@@ -142,7 +142,7 @@ END:VCARD`
               <div className="flex items-center gap-3 mb-2">
                 <Phone size={20} className="text-dark-text-secondary" />
                 <span className="text-sm font-bold tracking-[0.2em] text-dark-text-secondary">
-                  {t('contact.labels.phone') as string}
+                  {t('contact.labels.phone')}
                 </span>
               </div>
               <a
@@ -164,7 +164,7 @@ END:VCARD`
               <div className="flex items-center gap-3 mb-2">
                 <MapPin size={20} className="text-dark-text-secondary" />
                 <span className="text-sm font-bold tracking-[0.2em] text-dark-text-secondary">
-                  {t('contact.labels.location') as string}
+                  {t('contact.labels.location')}
                 </span>
               </div>
               <p className="text-xl md:text-2xl font-bold">

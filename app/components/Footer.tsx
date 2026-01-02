@@ -9,7 +9,7 @@ export default function Footer() {
     <footer className="dark-section py-8 border-t border-dark-border">
       <div className="section-container text-center">
         <p className="text-dark-text-tertiary text-sm">
-          {t('footer.copyright') as string}
+          {t('footer.copyright')}
         </p>
       </div>
     </footer>
