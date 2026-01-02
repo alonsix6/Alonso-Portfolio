@@ -1,0 +1,253 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #f5f5f5;
+  --surface: #ffffff;
+  --surface-alt: #e0e0e0;
+  --text-primary: #0a0a0a;
+  --text-secondary: #333333;
+  --text-tertiary: #666666;
+  --border-color: #0a0a0a;
+
+  --dark-background: #0a0a0a;
+  --dark-surface: #1a1a1a;
+  --dark-text-primary: #f5f5f5;
+  --dark-text-secondary: #999999;
+  --dark-border: #333333;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Brutalist Base Styles */
+@layer components {
+  .brutalist-border {
+    @apply border-3 border-text-primary;
+  }
+
+  .brutalist-card {
+    @apply bg-surface border-3 border-text-primary transition-all duration-200;
+  }
+
+  .brutalist-card:hover {
+    transform: translate(8px, -8px);
+    box-shadow: -8px 8px 0 0 var(--text-primary);
+  }
+
+  .brutalist-button {
+    @apply bg-text-primary text-surface px-6 py-3 font-bold uppercase tracking-wider;
+    @apply border-3 border-text-primary transition-all duration-200;
+  }
+
+  .brutalist-button:hover {
+    @apply bg-surface text-text-primary;
+    transform: translate(4px, -4px);
+    box-shadow: -4px 4px 0 0 var(--text-primary);
+  }
+
+  .brutalist-button-outline {
+    @apply bg-transparent text-text-primary px-6 py-3 font-bold uppercase tracking-wider;
+    @apply border-3 border-text-primary transition-all duration-200;
+  }
+
+  .brutalist-button-outline:hover {
+    @apply bg-text-primary text-surface;
+  }
+
+  .section-container {
+    @apply max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24;
+  }
+
+  .skill-card {
+    @apply pl-6 border-l-3 border-text-primary;
+  }
+}
+
+/* Text Scramble Animation */
+.scramble-char {
+  display: inline-block;
+  white-space: pre;
+}
+
+.scramble-text {
+  display: inline;
+}
+
+/* Initialize Button Glow */
+.glow-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.glow-button::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, transparent, rgba(0, 0, 0, 0.1), transparent);
+  animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+/* Project Card Hover States */
+.project-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: transparent;
+  transition: background 0.2s ease;
+  pointer-events: none;
+}
+
+/* Dark Section (Contact) */
+.dark-section {
+  background: var(--dark-background);
+  color: var(--dark-text-primary);
+}
+
+.dark-section .brutalist-button {
+  @apply bg-dark-text-primary text-dark-background border-dark-text-primary;
+}
+
+.dark-section .brutalist-button:hover {
+  @apply bg-transparent text-dark-text-primary;
+  box-shadow: -4px 4px 0 0 var(--dark-text-primary);
+}
+
+.dark-section .brutalist-button-outline {
+  @apply border-dark-text-primary text-dark-text-primary;
+}
+
+.dark-section .brutalist-button-outline:hover {
+  @apply bg-dark-text-primary text-dark-background;
+}
+
+/* Tech Tags */
+.tech-tag {
+  @apply bg-text-primary text-surface px-3 py-1 text-xs font-bold uppercase tracking-wider;
+}
+
+/* Fade In Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.fade-in-up-delay-1 { animation-delay: 0.1s; }
+.fade-in-up-delay-2 { animation-delay: 0.2s; }
+.fade-in-up-delay-3 { animation-delay: 0.3s; }
+.fade-in-up-delay-4 { animation-delay: 0.4s; }
+.fade-in-up-delay-5 { animation-delay: 0.5s; }
+
+/* Section visibility */
+.section-hidden {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.section-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive Typography */
+h1 {
+  @apply text-4xl md:text-6xl lg:text-7xl font-black tracking-tight;
+}
+
+h2 {
+  @apply text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight;
+}
+
+h3 {
+  @apply text-xl md:text-2xl font-bold;
+}
+
+/* Selection */
+::selection {
+  background: var(--text-primary);
+  color: var(--surface);
+}
+
+/* Language Toggle */
+.lang-toggle {
+  @apply fixed top-6 right-6 z-50 flex gap-2 text-sm font-bold;
+}
+
+.lang-option {
+  @apply px-3 py-1 transition-all duration-200 cursor-pointer;
+}
+
+.lang-option.active {
+  @apply bg-text-primary text-surface;
+}
+
+.lang-option:not(.active):hover {
+  @apply underline;
+}
+
+/* Highlight background for surname */
+.highlight-bg {
+  @apply bg-text-primary text-surface px-3 inline-block;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .brutalist-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .brutalist-button:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .brutalist-card:active {
+    transform: translate(4px, -4px);
+    box-shadow: -4px 4px 0 0 var(--text-primary);
+  }
+}
