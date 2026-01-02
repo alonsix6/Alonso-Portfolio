@@ -22,61 +22,34 @@ function Portfolio() {
     const ref = params.get('ref')
 
     if (ref) {
-      // Store NFC source
       localStorage.setItem('nfc_source', ref)
       localStorage.setItem('nfc_timestamp', new Date().toISOString())
-
-      // Track analytics event (you can replace with your analytics provider)
-      if (typeof window !== 'undefined' && 'gtag' in window) {
-        (window as unknown as { gtag: (...args: unknown[]) => void }).gtag('event', 'nfc_scan', {
-          source: ref,
-          timestamp: new Date().toISOString(),
-        })
-      }
-
-      // Log for Vercel Analytics or console
       console.log('[NFC Tracking]', { source: ref, timestamp: new Date().toISOString() })
     }
   }, [])
 
-  const scrollToSection = useCallback((sectionId: string, delay: number = 0) => {
-    return new Promise<void>((resolve) => {
-      setTimeout(() => {
-        const section = document.getElementById(sectionId)
-        if (section) {
-          const offset = 100
-          const top = section.offsetTop - offset
-          window.scrollTo({
-            top,
-            behavior: 'smooth',
-          })
-        }
-        resolve()
-      }, delay)
-    })
-  }, [])
-
-  const handleInitialize = useCallback(async () => {
-    // Phase 1: Hero animation
+  const handleInitialize = useCallback(() => {
+    // Trigger hero animation immediately
     setHeroTrigger(true)
 
-    // Phase 2: Scroll to About and trigger animation
-    await scrollToSection('about', 1500)
-    setAboutTrigger(true)
-
-    // Phase 3: Scroll to Work and trigger animation
-    await scrollToSection('work', 2500)
-    setWorkTrigger(true)
-
-    // Phase 4: Scroll to Contact and trigger animation
-    await scrollToSection('contact', 3500)
-    setContactTrigger(true)
-
-    // Mark as initialized
+    // After hero animates, scroll smoothly to About
     setTimeout(() => {
-      setIsInitialized(true)
-    }, 4500)
-  }, [scrollToSection])
+      const about = document.getElementById('about')
+      if (about) {
+        about.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
+
+      // Trigger About animation
+      setAboutTrigger(true)
+
+      // Trigger remaining sections (no scroll, just reveal)
+      setTimeout(() => {
+        setWorkTrigger(true)
+        setContactTrigger(true)
+        setIsInitialized(true)
+      }, 800)
+    }, 1200)
+  }, [])
 
   return (
     <main>

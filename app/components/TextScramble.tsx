@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState, useCallback } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 interface TextScrambleProps {
   text: string
@@ -9,10 +9,20 @@ interface TextScrambleProps {
   trigger?: boolean
   delay?: number
   onComplete?: () => void
-  scrambled?: boolean
 }
 
 const CHARS = '!<>-_\\/[]{}—=+*^?#'
+
+function randomChar(): string {
+  return CHARS[Math.floor(Math.random() * CHARS.length)]
+}
+
+function scrambleText(str: string): string {
+  return str
+    .split('')
+    .map((char) => (char === ' ' ? ' ' : randomChar()))
+    .join('')
+}
 
 export default function TextScramble({
   text,
@@ -21,125 +31,90 @@ export default function TextScramble({
   trigger = false,
   delay = 0,
   onComplete,
-  scrambled = true,
 }: TextScrambleProps) {
-  const [displayText, setDisplayText] = useState(scrambled ? scrambleText(text) : text)
-  const [isAnimating, setIsAnimating] = useState(false)
-  const frameRef = useRef<number | null>(null)
-  const queueRef = useRef<Array<{ from: string; to: string; start: number; end: number; char?: string }>>([])
+  const [displayText, setDisplayText] = useState(() => scrambleText(text))
+  const [hasAnimated, setHasAnimated] = useState(false)
+  const animationRef = useRef<number | null>(null)
+  const hasStartedRef = useRef(false)
 
-  function scrambleText(str: string): string {
-    return str
-      .split('')
-      .map((char) => (char === ' ' ? ' ' : CHARS[Math.floor(Math.random() * CHARS.length)]))
-      .join('')
-  }
+  useEffect(() => {
+    // Only animate once when trigger becomes true
+    if (!trigger || hasStartedRef.current) return
 
-  function randomChar(): string {
-    return CHARS[Math.floor(Math.random() * CHARS.length)]
-  }
+    const timeoutId = setTimeout(() => {
+      hasStartedRef.current = true
 
-  const animate = useCallback(() => {
-    let complete = 0
-    const output: string[] = []
+      const targetText = text
+      const queue: Array<{ from: string; to: string; start: number; end: number; char?: string }> = []
 
-    for (let i = 0; i < queueRef.current.length; i++) {
-      const item = queueRef.current[i]
-      const { from, to, start, end } = item
+      // Build animation queue
+      for (let i = 0; i < targetText.length; i++) {
+        const start = Math.floor(Math.random() * 20)
+        const end = start + Math.floor(Math.random() * 20) + 15
+        queue.push({
+          from: randomChar(),
+          to: targetText[i],
+          start,
+          end,
+        })
+      }
 
-      if (frameRef.current === null) return
+      let frame = 0
 
-      if (frameRef.current >= end) {
-        complete++
-        output.push(to)
-      } else if (frameRef.current >= start) {
-        if (!item.char || Math.random() < 0.28) {
-          item.char = randomChar()
+      const animate = () => {
+        let complete = 0
+        const output: string[] = []
+
+        for (let i = 0; i < queue.length; i++) {
+          const item = queue[i]
+          const { to, start, end } = item
+
+          if (frame >= end) {
+            complete++
+            output.push(to)
+          } else if (frame >= start) {
+            if (!item.char || Math.random() < 0.28) {
+              item.char = randomChar()
+            }
+            output.push(item.char)
+          } else {
+            output.push(item.from)
+          }
         }
-        output.push(item.char)
-      } else {
-        output.push(from)
+
+        setDisplayText(output.join(''))
+
+        if (complete === queue.length) {
+          setHasAnimated(true)
+          if (onComplete) onComplete()
+          return
+        }
+
+        frame++
+        animationRef.current = requestAnimationFrame(animate)
+      }
+
+      animationRef.current = requestAnimationFrame(animate)
+    }, delay)
+
+    return () => {
+      clearTimeout(timeoutId)
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current)
       }
     }
+  }, [trigger, text, delay, onComplete])
 
-    setDisplayText(output.join(''))
-
-    if (complete === queueRef.current.length) {
-      setIsAnimating(false)
-      if (onComplete) onComplete()
-      return
-    }
-
-    frameRef.current!++
-    requestAnimationFrame(animate)
-  }, [onComplete])
-
-  const startAnimation = useCallback(() => {
-    if (isAnimating) return
-
-    setIsAnimating(true)
-    const oldText = displayText
-    const newText = text
-    const length = Math.max(oldText.length, newText.length)
-
-    queueRef.current = []
-
-    for (let i = 0; i < length; i++) {
-      const from = oldText[i] || ''
-      const to = newText[i] || ''
-      const start = Math.floor(Math.random() * 40)
-      const end = start + Math.floor(Math.random() * 40) + 20
-      queueRef.current.push({ from, to, start, end })
-    }
-
-    frameRef.current = 0
-    requestAnimationFrame(animate)
-  }, [displayText, text, isAnimating, animate])
-
+  // Update display when text changes (language switch) after animation
   useEffect(() => {
-    if (trigger && !isAnimating) {
-      const timeout = setTimeout(() => {
-        startAnimation()
-      }, delay)
-      return () => clearTimeout(timeout)
-    }
-  }, [trigger, delay, startAnimation, isAnimating])
-
-  // If not scrambled initially, just show the text
-  useEffect(() => {
-    if (!scrambled) {
+    if (hasAnimated) {
       setDisplayText(text)
     }
-  }, [text, scrambled])
+  }, [text, hasAnimated])
 
   return (
     <Component className={className}>
       {displayText}
     </Component>
   )
-}
-
-// Hook for controlling multiple scramble animations
-export function useScrambleSequence() {
-  const [activeIndex, setActiveIndex] = useState(-1)
-  const [isComplete, setIsComplete] = useState(false)
-
-  const start = useCallback(() => {
-    setActiveIndex(0)
-    setIsComplete(false)
-  }, [])
-
-  const next = useCallback(() => {
-    setActiveIndex((prev) => prev + 1)
-  }, [])
-
-  const complete = useCallback(() => {
-    setIsComplete(true)
-  }, [])
-
-  const shouldTrigger = useCallback((index: number) => {
-    return activeIndex >= index
-  }, [activeIndex])
-
-  return { start, next, complete, shouldTrigger, isComplete, activeIndex }
 }

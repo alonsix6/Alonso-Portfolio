@@ -49,7 +49,6 @@ END:VCARD`
               as="h2"
               trigger={triggerAnimation}
               delay={0}
-              scrambled={true}
             />
 
             <TextScramble
