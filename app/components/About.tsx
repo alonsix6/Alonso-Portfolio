@@ -13,9 +13,9 @@ interface Skill {
 }
 
 export default function About({ triggerAnimation }: AboutProps) {
-  const { t } = useLanguage()
-  const paragraphs = t('about.paragraphs') as string[]
-  const skills = t('about.skills') as Skill[]
+  const { t, tArray, tRaw } = useLanguage()
+  const paragraphs = tArray('about.paragraphs')
+  const skills = tRaw('about.skills') as Skill[]
 
   return (
     <section id="about" className="py-24 md:py-32 section-container">
@@ -24,7 +24,7 @@ export default function About({ triggerAnimation }: AboutProps) {
         <div>
           <div className="mb-4">
             <TextScramble
-              text={t('about.label') as string}
+              text={t('about.label')}
               className="text-sm font-bold tracking-[0.3em] text-text-tertiary"
               trigger={triggerAnimation}
               delay={0}
@@ -33,7 +33,7 @@ export default function About({ triggerAnimation }: AboutProps) {
 
           <div className="mb-8">
             <TextScramble
-              text={t('about.title') as string}
+              text={t('about.title')}
               className="text-3xl md:text-4xl lg:text-5xl font-bold"
               as="h2"
               trigger={triggerAnimation}

@@ -21,8 +21,8 @@ interface Project {
 const projectIcons = [Code2, Heart, TrendingUp, Zap, Camera]
 
 export default function Work({ triggerAnimation }: WorkProps) {
-  const { t } = useLanguage()
-  const projects = t('work.projects') as Project[]
+  const { t, tRaw } = useLanguage()
+  const projects = tRaw('work.projects') as Project[]
 
   return (
     <section id="work" className="py-24 md:py-32 section-container">
@@ -30,14 +30,14 @@ export default function Work({ triggerAnimation }: WorkProps) {
       <div className="mb-16">
         <div className="mb-4">
           <TextScramble
-            text={t('work.label') as string}
+            text={t('work.label')}
             className="text-sm font-bold tracking-[0.3em] text-text-tertiary"
             trigger={triggerAnimation}
             delay={0}
           />
         </div>
         <TextScramble
-          text={t('work.title') as string}
+          text={t('work.title')}
           className="text-3xl md:text-4xl lg:text-5xl font-bold"
           as="h2"
           trigger={triggerAnimation}

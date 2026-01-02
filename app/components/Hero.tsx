@@ -33,7 +33,7 @@ export default function Hero({ onInitialize, isInitialized, triggerAnimation }: 
         {/* Eyebrow */}
         <div className="mb-6">
           <TextScramble
-            text={t('hero.eyebrow') as string}
+            text={t('hero.eyebrow')}
             className="text-sm md:text-base font-bold tracking-[0.3em] text-text-secondary"
             trigger={triggerAnimation}
             delay={0}
@@ -43,13 +43,13 @@ export default function Hero({ onInitialize, isInitialized, triggerAnimation }: 
         {/* Name */}
         <h1 className="mb-6">
           <TextScramble
-            text={t('hero.name') as string}
+            text={t('hero.name')}
             className="block"
             trigger={triggerAnimation}
             delay={100}
           />{' '}
           <TextScramble
-            text={t('hero.surname') as string}
+            text={t('hero.surname')}
             className="highlight-bg"
             trigger={triggerAnimation}
             delay={200}
@@ -59,7 +59,7 @@ export default function Hero({ onInitialize, isInitialized, triggerAnimation }: 
         {/* Tagline */}
         <div className="mb-12">
           <TextScramble
-            text={t('hero.tagline') as string}
+            text={t('hero.tagline')}
             className="text-lg md:text-xl lg:text-2xl text-text-secondary max-w-2xl leading-relaxed"
             as="p"
             trigger={triggerAnimation}
